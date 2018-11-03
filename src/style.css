@@ -5,9 +5,10 @@ body, main {
   height: 100%;
   margin: 0;
 }
-main {
+x-slider {
   display: flex;
   width: 300%; /** depends on count of slides **/
+  height: 100%;
   margin: 0;
 }
 x-slide {
