@@ -3,10 +3,15 @@ import {render, html} from 'lit-html';
 export default class Slide extends HTMLElement {
   constructor() {
     super();
-    const p = document.createElement('p');
-    p.innerText = this.innerText.trim(); 
-    const shadow = this.attachShadow({mode: 'open'});
-    shadow.appendChild(p);
+    this.attachShadow({mode: 'open'});
+    render(this.template, this.shadowRoot);
+  }
+
+  get template() {
+    const text = this.innerHTML.trim();
+    return html`
+      <p>${text}</p>
+    `;
   }
 }
 
