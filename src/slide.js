@@ -1,3 +1,4 @@
+import {render, html} from 'lit-html';
 
 export default class Slide extends HTMLElement {
   constructor() {
