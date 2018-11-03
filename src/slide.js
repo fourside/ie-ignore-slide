@@ -10,7 +10,15 @@ export default class Slide extends HTMLElement {
   get template() {
     const text = this.innerHTML.trim();
     return html`
-      <p>${text}</p>
+      <style>
+      div {
+        margin: 0;
+        padding: 5%;
+      }
+      </style>
+      <div>
+        ${text}
+      </div>
     `;
   }
 }
