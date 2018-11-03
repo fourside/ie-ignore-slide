@@ -7,12 +7,15 @@ body, main {
 }
 x-slider {
   display: flex;
-  width: 300%; /** depends on count of slides **/
   height: 100%;
   margin: 0;
 }
 x-slide {
   flex-basis: 100%;
   border: 1px solid black;
+  display: none;
+}
+x-slide.active {
+  display: block;
 }
 
