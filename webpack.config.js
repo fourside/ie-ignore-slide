@@ -21,5 +21,10 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './src/style.css', to: './' }
     ])
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 };
