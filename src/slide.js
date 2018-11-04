@@ -19,10 +19,6 @@ export default class Slide extends HTMLElement {
 
       ::slotted(h1) {
         font-size: 400%;
-        position: relative;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%, -50%);
       }
       ::slotted(h2) {
         font-size: 300%;
@@ -31,6 +27,12 @@ export default class Slide extends HTMLElement {
         background-color: #e6e8ea;
         border-radius: 10px;
         padding: 16px;
+      }
+      ::slotted(.middle) {
+        position: relative;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       ::slotted(.meta) {
         color: #1a0a0a;
