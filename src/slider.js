@@ -50,7 +50,7 @@ export default class Slider extends HTMLElement {
       if (['left', 'k'].some(key => keycode.isEventKey(event, key))) {
         this.prev();
       }
-    }
+    };
   }
 
   activate(index) {
