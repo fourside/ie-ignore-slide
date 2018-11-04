@@ -10,6 +10,10 @@ export default class Slider extends HTMLElement {
     this.attachShadow({mode: 'open'});
     render(this.template, this.shadowRoot);
     this.addListner(document);
+
+    Array.prototype.forEach.call(this.children, (child, i) => {
+      child.setAttribute('data-page', i + 1);
+    });
   }
 
   get template() {
@@ -65,6 +69,4 @@ export default class Slider extends HTMLElement {
   }
 
 }
-
-customElements.define('x-slider', Slider);
 

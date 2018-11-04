@@ -8,19 +8,34 @@ export default class Slide extends HTMLElement {
   }
 
   get template() {
-    const text = this.innerHTML.trim();
     return html`
       <style>
-      div {
-        margin: 0;
+      .slide {
         padding: 5%;
+        height: 80%;
+        position: relative;
+      }
+      .page {
+        margin: 0;
+        color: grey;
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+        font-size: 1.5em;
+        font-family: serif;
       }
       </style>
-      <div>
-        ${text}
+      <div class="slide">
+        <slot></slot>
+        <h5 class="page">${this.getAttribute('data-page')} / ${this.total}</h5>
       </div>
     `;
   }
+
+  get total() {
+    return this.parentNode.children.length;
+  }
+
+
 }
 
-customElements.define('x-slide', Slide);
