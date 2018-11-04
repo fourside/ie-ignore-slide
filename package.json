@@ -15,7 +15,8 @@
     "highlight.js": "^9.13.1",
     "keycode": "^2.2.0",
     "lit-html": "^0.12.0",
-    "markdown-it": "^8.4.2"
+    "markdown-it": "^8.4.2",
+    "markdown-it-attrs": "^2.3.2"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.6.0",
