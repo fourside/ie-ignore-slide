@@ -3,7 +3,10 @@ html, body {
   margin: 0;
   background-color: #cfcfcf;
 }
-p, div, pre, ul {
+p, div, pre {
+  font-size: 200%;
+}
+x-slide > ul {
   font-size: 200%;
 }
 x-slider {
