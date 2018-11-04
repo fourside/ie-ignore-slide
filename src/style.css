@@ -3,6 +3,9 @@ html, body {
   margin: 0;
   background-color: #cfcfcf;
 }
+p, div, pre, ul {
+  font-size: 200%;
+}
 x-slider {
   display: flex;
   height: 100%;
@@ -13,7 +16,6 @@ x-slider {
 x-slide {
   flex-basis: 80%;
   margin: 10px auto 30px;
-  border: 10px solid #fafafa;
   border-radius: 20px;
   box-shadow: 15px 15px 10px rgba(100,100,100,0.3);
   display: none;

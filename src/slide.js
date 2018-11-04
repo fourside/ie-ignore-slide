@@ -11,9 +11,21 @@ export default class Slide extends HTMLElement {
     return html`
       <style>
       .slide {
-        padding: 5%;
+        padding: 0 5%;
+        margin: 0;
         height: 80%;
         position: relative;
+      }
+
+      ::slotted(h1) {
+        font-size: 400%;
+        position: relative;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      ::slotted(h2) {
+        font-size: 300%;
       }
       .page {
         margin: 0;
