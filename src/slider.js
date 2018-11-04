@@ -1,25 +1,36 @@
 import {render, html} from 'lit-html';
 import keycode from 'keycode';
 
-const ACTIVE_CLASS = "active";
+import {markdown} from './markdown';
+
+const ACTIVE_CLASS = 'active';
+const markdownDelimiter = '---';
 
 export default class Slider extends HTMLElement {
 
   constructor() {
     super();
     this.attachShadow({mode: 'open'});
+    this.innerHTML = this.md(this.textContent);
     render(this.template, this.shadowRoot);
     this.addListner(document);
 
     Array.prototype.forEach.call(this.children, (child, i) => {
       child.setAttribute('data-page', i + 1);
     });
+    this.activate(0);
   }
 
   get template() {
     return html`
       <slot></slot>
     `;
+  }
+
+  md(src) {
+    return src.split(markdownDelimiter).map((s) => {
+      return '<x-slide>' + markdown(s) + '</x-slide>';
+    }).join('');
   }
 
   max() {
