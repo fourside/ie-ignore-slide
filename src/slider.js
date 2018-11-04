@@ -10,7 +10,6 @@ export default class Slider extends HTMLElement {
     this.attachShadow({mode: 'open'});
     render(this.template, this.shadowRoot);
     this.addListner(document);
-    this.activate(0);
   }
 
   get template() {

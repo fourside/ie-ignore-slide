@@ -1,21 +1,34 @@
-html {
-  height: 100%;
-}
-body, main {
+html, body {
   height: 100%;
   margin: 0;
+  background-color: #cfcfcf;
 }
 x-slider {
   display: flex;
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 x-slide {
-  flex-basis: 100%;
-  border: 1px solid black;
+  flex-basis: 80%;
+  margin: 10px auto 30px;
+  border: 10px solid #fafafa;
+  border-radius: 20px;
+  box-shadow: 15px 15px 10px rgba(100,100,100,0.3);
   display: none;
+  background-color: #f9f9f9;
 }
 x-slide.active {
   display: block;
+  animation: fade-in 0.4s ease-in-out 0s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
