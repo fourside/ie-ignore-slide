@@ -8,6 +8,7 @@ x-slider {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  color: #cfcfcf;
 }
 x-slide {
   flex-basis: 80%;

@@ -23,6 +23,9 @@ export default class Slider extends HTMLElement {
 
   get template() {
     return html`
+      <style> * {
+        color: #3a3a3a;
+      }</style>
       <slot></slot>
     `;
   }
