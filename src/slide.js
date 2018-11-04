@@ -32,6 +32,19 @@ export default class Slide extends HTMLElement {
         border-radius: 10px;
         padding: 16px;
       }
+      ::slotted(.meta) {
+        color: #1a0a0a;
+        opacity: 0.8;
+        margin: 0;
+      }
+      ::slotted(.author) {
+        position: absolute;
+        bottom: 1.5em;
+      }
+      ::slotted(.pubdate) {
+        position: absolute;
+        bottom: 0;
+      }
 
       .page {
         margin: 0;

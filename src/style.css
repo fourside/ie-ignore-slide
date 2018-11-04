@@ -3,6 +3,13 @@ html, body {
   margin: 0;
   background-color: #cfcfcf;
 }
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 p, div, pre {
   font-size: 200%;
 }
@@ -23,6 +30,7 @@ x-slide {
   box-shadow: 15px 15px 10px rgba(100,100,100,0.3);
   display: none;
   background-color: #f9f9f9;
+  color: #1a0a0a;
 }
 x-slide.active {
   display: block;
