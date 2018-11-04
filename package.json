@@ -11,8 +11,10 @@
   "author": "fourside@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "highlight.js": "^9.13.1",
     "keycode": "^2.2.0",
-    "lit-html": "^0.12.0"
+    "lit-html": "^0.12.0",
+    "markdown-it": "^8.4.2"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.6.0",
