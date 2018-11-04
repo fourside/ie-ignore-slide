@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "serve": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production",
     "eslint": "npx eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
