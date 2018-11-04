@@ -13,7 +13,7 @@ export default class Slide extends HTMLElement {
       .slide {
         padding: 0 5%;
         margin: 0;
-        height: 80%;
+        height: calc(100% - 50px);
         position: relative;
       }
 
@@ -27,6 +27,12 @@ export default class Slide extends HTMLElement {
       ::slotted(h2) {
         font-size: 300%;
       }
+      ::slotted(pre) {
+        background-color: #e6e8ea;
+        border-radius: 10px;
+        padding: 16px;
+      }
+
       .page {
         margin: 0;
         color: grey;
@@ -47,7 +53,6 @@ export default class Slide extends HTMLElement {
   get total() {
     return this.parentNode.children.length;
   }
-
 
 }
 
