@@ -15,8 +15,10 @@ export default class Slider extends HTMLElement {
     render(this.template, this.shadowRoot);
     this.addListner(document);
     this.pager();
-
-    this.activate(0);
+    this.activate();
+    window.onhashchange = () => {
+      this.activate();
+    };
   }
 
   get template() {
@@ -57,7 +59,12 @@ export default class Slider extends HTMLElement {
     };
   }
 
-  activate(index) {
+  activate() {
+    let index = 0;
+    let hash = window.location.hash;
+    if (hash !== '') {
+      index = parseInt(hash.substr(1), 10);
+    }
     Array.prototype.forEach.call(this.children, (child, i) => {
       if (i === index) {
         child.classList.add(ACTIVE_CLASS);
@@ -77,15 +84,19 @@ export default class Slider extends HTMLElement {
   next() {
     const i = this.current();
     if (i < this.max()) {
-      this.activate(i + 1);
+      this.changeHash(i + 1);
     }
   }
 
   prev() {
     const i = this.current();
     if (i > 0) {
-      this.activate(i - 1);
+      this.changeHash(i - 1);
     }
+  }
+
+  changeHash(index) {
+    window.location.hash = '#' + index;
   }
 
 }
