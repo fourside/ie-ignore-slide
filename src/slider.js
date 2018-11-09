@@ -4,20 +4,18 @@ import keycode from 'keycode';
 import {markdown} from './markdown';
 
 const ACTIVE_CLASS = 'active';
-const markdownDelimiter = '---';
+const MD_DELIMITER = '---';
 
 export default class Slider extends HTMLElement {
 
   constructor() {
     super();
     this.attachShadow({mode: 'open'});
-    this.innerHTML = this.md(this.textContent);
+    this.innerHTML = this.parseMarkdow(this.textContent);
     render(this.template, this.shadowRoot);
     this.addListner(document);
+    this.pager();
 
-    Array.prototype.forEach.call(this.children, (child, i) => {
-      child.setAttribute('data-page', i + 1);
-    });
     this.activate(0);
   }
 
@@ -32,10 +30,16 @@ export default class Slider extends HTMLElement {
     `;
   }
 
-  md(src) {
-    return src.split(markdownDelimiter).map((s) => {
+  parseMarkdow(src) {
+    return src.split(MD_DELIMITER).map((s) => {
       return '<x-slide>' + markdown(s) + '</x-slide>';
     }).join('');
+  }
+
+  pager() {
+    Array.prototype.forEach.call(this.children, (child, i) => {
+      child.setAttribute('data-page', i + 1);
+    });
   }
 
   max() {
