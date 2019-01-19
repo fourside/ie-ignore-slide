@@ -6,13 +6,25 @@ export default class TimeProgress extends HTMLElement {
     this.attachShadow({mode: 'open'});
     render(this.template, this.shadowRoot);
     this.progress = this.shadowRoot.getElementById('progress');
+    this.start();
+  }
+
+  start() {
+    const query = window.location.search;
+    const durationSec = parseInt(query.substring(1).split('=')[1], 10);
+    if (!durationSec) {
+      return;
+    }
+    const startSec = Date.now() / 1000;
 
     const intervalId = window.setInterval(() => {
-      if (this.progress.value < 100) {
-        this.progress.value += 0.1;
+      if (this.progress.value >= 100) {
+        window.clearInterval(intervalId);
         return;
       }
-      window.clearInterval(intervalId);
+      const elapsed = (Date.now() / 1000) - startSec;
+      const progress = (elapsed / durationSec) * 100;
+      this.progress.value = progress;
     }, 100);
   }
 
