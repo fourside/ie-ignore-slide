@@ -1,30 +1,33 @@
 import {render, html} from 'lit-html';
 
+const DEFALT_SEC = 60 * 5;
+
 export default class TimeProgress extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({mode: 'open'});
     render(this.template, this.shadowRoot);
-    this.progress = this.shadowRoot.getElementById('progress');
     this.start();
   }
 
   start() {
     const query = window.location.search;
-    const durationSec = parseInt(query.substring(1).split('=')[1], 10);
+    let durationSec = parseInt(query.substring(1).split('=')[1], 10);
     if (!durationSec) {
-      return;
+      durationSec = DEFALT_SEC;
     }
+
+    const progressBar = this.shadowRoot.getElementById('progress');
     const startSec = Date.now() / 1000;
 
     const intervalId = window.setInterval(() => {
-      if (this.progress.value >= 100) {
+      if (progressBar.value >= 100) {
         window.clearInterval(intervalId);
         return;
       }
-      const elapsed = (Date.now() / 1000) - startSec;
-      const progress = (elapsed / durationSec) * 100;
-      this.progress.value = progress;
+      const elapsedSec = (Date.now() / 1000) - startSec;
+      const progress = (elapsedSec / durationSec) * 100;
+      progressBar.value = progress;
     }, 100);
   }
 
