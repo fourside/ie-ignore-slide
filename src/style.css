@@ -13,6 +13,23 @@ a:hover {
 p, div, pre {
   font-size: 200%;
 }
+
+img {
+  height: 30%;
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.capture img {
+  height: 50%;
+  width: 50%;
+}
+.capture-mid img {
+  height: 40%;
+  width: 40%;
+}
+
 x-slide > ul {
   font-size: 200%;
 }

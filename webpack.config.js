@@ -13,13 +13,14 @@ module.exports = {
               url: false,
             }
           }
-        ]}
+        ]},
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({template: './src/index.html'}),
     new CopyWebpackPlugin([
-      { from: './src/style.css', to: './' }
+      { from: './src/style.css', to: './' },
+      { from: './src/img', to: './img' },
     ])
   ],
   optimization: {
