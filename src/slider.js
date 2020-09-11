@@ -3,7 +3,10 @@ import keycode from 'keycode';
 
 import {markdown} from './markdown';
 
-const ACTIVE_CLASS = 'active';
+const ACTIVE_FROM_RIGHT_CLASS = 'active-from-right';
+const ACTIVE_FROM_LEFT_CLASS = 'active-from-left';
+const LEFTOUT_CLASS = 'left-out';
+const RIGHTOUT_CLASS = 'right-out';
 const MD_DELIMITER = '---';
 
 export default class Slider extends HTMLElement {
@@ -15,9 +18,9 @@ export default class Slider extends HTMLElement {
     render(this.template, this.shadowRoot);
     this.addListner(document);
     this.pager();
-    this.activate();
-    window.onhashchange = () => {
-      this.activate();
+    this.activate(null, location.href);
+    window.onhashchange = (event) => {
+      this.activate(event.oldURL, event.newURL);
     };
   }
 
@@ -59,24 +62,42 @@ export default class Slider extends HTMLElement {
     };
   }
 
-  activate() {
+  activate(oldURL, newURL) {
     let index = 0;
-    let hash = window.location.hash;
+    const hash = new URL(newURL).hash;
     if (hash !== '') {
       index = parseInt(hash.substr(1), 10);
     }
+    const oldHash = oldURL ? new URL(oldURL).hash : '#0';
+    const oldIndex = parseInt(oldHash.substr(1), 10);
     Array.prototype.forEach.call(this.children, (child, i) => {
       if (i === index) {
-        child.classList.add(ACTIVE_CLASS);
+        if (index > oldIndex) {
+          child.classList.add(ACTIVE_FROM_RIGHT_CLASS);
+          child.classList.remove(ACTIVE_FROM_LEFT_CLASS);
+        } else {
+          child.classList.remove(ACTIVE_FROM_RIGHT_CLASS);
+          child.classList.add(ACTIVE_FROM_LEFT_CLASS);
+        }
+        child.classList.remove(RIGHTOUT_CLASS);
+        child.classList.remove(LEFTOUT_CLASS);
+      } else if (i > index) {
+        child.classList.remove(ACTIVE_FROM_LEFT_CLASS);
+        child.classList.remove(ACTIVE_FROM_RIGHT_CLASS);
+        child.classList.add(RIGHTOUT_CLASS);
+        child.classList.remove(LEFTOUT_CLASS);
       } else {
-        child.classList.remove(ACTIVE_CLASS);
+        child.classList.remove(ACTIVE_FROM_LEFT_CLASS);
+        child.classList.remove(ACTIVE_FROM_RIGHT_CLASS);
+        child.classList.remove(RIGHTOUT_CLASS);
+        child.classList.add(LEFTOUT_CLASS);
       }
     });
   }
 
   current() {
     const index = Array.prototype.findIndex.call(this.children, (child) => {
-      return child.classList.contains(ACTIVE_CLASS);
+      return child.classList.contains(ACTIVE_FROM_LEFT_CLASS) || child.classList.contains(ACTIVE_FROM_RIGHT_CLASS);
     });
     return index > -1 ? index : 0;
   }
