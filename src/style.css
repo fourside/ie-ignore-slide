@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   background-color: #cfcfcf;
+  overflow: hidden;
 }
 a {
   color: #0366d6;
@@ -37,21 +38,34 @@ x-slider {
   display: flex;
   height: 98%;
   margin: 0;
-  overflow: hidden;
   color: #cfcfcf;
 }
 x-slide {
-  flex-basis: 80%;
-  margin: 10px auto 30px;
   border-radius: 20px;
   box-shadow: 15px 15px 10px rgba(100,100,100,0.3);
-  display: none;
   background-color: #f9f9f9;
   color: #1a0a0a;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 80%;
+  height: 90%;
+  margin-left: 0%;
 }
-x-slide.active {
-  display: block;
-  animation: fade-in 0.4s ease-in-out 0s;
+x-slide.active-from-left {
+  animation: fade-in-left 0.4s ease-in-out 0s;
+}
+x-slide.active-from-right {
+  animation: fade-in-right 0.4s ease-in-out 0s;
+}
+x-slide.right-out {
+  margin-left: 100%;
+  animation: fade-out-right 0.4s ease-in-out 0s;
+}
+x-slide.left-out {
+  margin-left: -100%;
+  animation: fade-out-left 0.4s ease-in-out 0s;
 }
 time-progress {
   display: block;
@@ -61,12 +75,35 @@ time-progress {
   bottom: 1em;
 }
 
-@keyframes fade-in {
+@keyframes fade-in-right {
   0% {
-    opacity: 0;
+    margin-left: 100%;
   }
   100% {
-    opacity: 1;
+    margin-left: 0%;
   }
 }
-
+@keyframes fade-in-left {
+  0% {
+    margin-left: -100%;
+  }
+  100% {
+    margin-left: 0%;
+  }
+}
+@keyframes fade-out-right {
+  0% {
+    margin-left: 0%;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+@keyframes fade-out-left {
+  0% {
+    margin-left: 0%;
+  }
+  100% {
+    margin-left: -100%;
+  }
+}
