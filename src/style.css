@@ -20,20 +20,24 @@ x-slider {
   display: flex;
   height: 98%;
   margin: 0;
-  overflow: hidden;
   color: #cfcfcf;
 }
 x-slide {
-  flex-basis: 80%;
   margin: 10px auto 30px;
   border-radius: 20px;
   box-shadow: 15px 15px 10px rgba(100,100,100,0.3);
-  display: none;
   background-color: #f9f9f9;
   color: #1a0a0a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  z-index: -1;
 }
 x-slide.active {
-  display: block;
+  z-index: 1;
   animation: fade-in 0.4s ease-in-out 0s;
 }
 time-progress {
@@ -46,10 +50,9 @@ time-progress {
 
 @keyframes fade-in {
   0% {
-    opacity: 0;
+    margin-left: -100%;
   }
   100% {
-    opacity: 1;
+    margin-left: 0;
   }
 }
-
